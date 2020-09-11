@@ -1,10 +1,10 @@
 {
   "name": "platziverse-app",
   "version": "1.0.0",
-  "description": "challenge for Node.js",
+  "description": "challenge for Node.js, Asimple IoT platform - DB module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/CarGDev/Platziverse-challenge/issues"
   },
-  "homepage": "https://github.com/CarGDev/Platziverse-challenge#readme"
+  "homepage": "https://github.com/CarGDev/Platziverse-challenge#readme",
+  "devDependencies": {
+    "standard": "^14.3.4"
+  },
+  "dependencies": {
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
+  }
 }
