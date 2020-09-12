@@ -4,7 +4,8 @@
   "description": "challenge for Node.js, Asimple IoT platform - DB module",
   "main": "index.js",
   "scripts": {
-    "lint": "standard --fix"
+    "lint": "standard --fix",
+    "setup": "SET DEBUG=platziverse:* && node setup.js"
   },
   "repository": {
     "type": "git",
@@ -24,9 +25,11 @@
   },
   "homepage": "https://github.com/CarGDev/Platziverse-challenge#readme",
   "devDependencies": {
-    "standard": "^14.3.4"
+    "standard": "^14.3.4",
+    "debug": "^4.1.1"
   },
   "dependencies": {
+    "chalk": "^4.1.0",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5"
