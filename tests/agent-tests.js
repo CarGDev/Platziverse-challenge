@@ -1,13 +1,26 @@
 'use strict'
 
 const test = require('ava')
+const proxyquire = require('proxyquire')
 const config = {
   loggin: function () {}
 }
+
+const MetricStub = {
+  belongsTo: function () {}
+}
+
+let AgentSub = null
 let db = null
 
 test.beforeEach(async () => {
-  const setupDatabase = require('../')
+  AgentSub = {
+    hasMany: function () {}
+  }
+  const setupDatabase = proxyquire('../', {
+    './models/agent': () => AgentSub,
+    './models/metric': () => MetricStub
+  })
   db = await setupDatabase(config)
 })
 
