@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard --fix",
-    "setup": "SET DEBUG=platziverse:* && node setup.js"
+    "setup": "SET DEBUG=platziverse:* && node setup.js",
+    "test": "SET DEBUG=platziverse:* && ava tests/* --verbose"
   },
   "repository": {
     "type": "git",
@@ -25,11 +26,15 @@
   },
   "homepage": "https://github.com/CarGDev/Platziverse-challenge#readme",
   "devDependencies": {
-    "standard": "^14.3.4",
-    "debug": "^4.1.1"
+    "ava": "^3.12.1",
+    "debug": "^4.1.1",
+    "sqlite3": "^5.0.0",
+    "standard": "^14.3.4"
   },
   "dependencies": {
     "chalk": "^4.1.0",
+    "defaults": "^1.0.3",
+    "inquirer": "^7.3.3",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5"

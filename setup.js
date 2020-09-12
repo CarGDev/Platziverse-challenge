@@ -3,8 +3,23 @@
 const db = require('./')
 const debug = require('debug')('platziverse:db:setup')
 const chalk = require('chalk')
+const inquirer = require('inquirer')
+
+const prompt = inquirer.createPromptModule()
 
 async function setup () {
+  const answer = await prompt([
+    {
+      type: 'confirm',
+      name: 'setup',
+      message: 'This will destroy your database, are you sure?'
+    }
+  ])
+
+  if (!answer.setup) {
+    return console.log(chalk.green('Nothing happened :)'))
+  }
+
   const config = {
     database: process.env.DB_NAME || 'platziverse',
     username: process.env.DB_USER || 'platzi',
@@ -14,16 +29,16 @@ async function setup () {
     logging: s => debug(s),
     setup: true
   }
-
+  console.log(config.password)
   await db(config).catch(handleFatalError)
 
-  console.log(chalk.bgGreen.white('Success!'))
+  console.log(`${chalk.bgGreen.white('[Connected]:')} Success!`)
   process.exit(0)
 }
 
 function handleFatalError (err) {
-  console.error(chalk.bgRed.white(err.message))
-  console.error(chalk.bgRed.white(err.stack))
+  console.error(`${chalk.bgRed.white('[fatal error]:')} ${err.message}`)
+  console.error(`${chalk.bgRed.white('[Error]:')} ${err.stack}`)
   process.exit(1)
 }
 
