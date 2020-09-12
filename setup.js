@@ -29,7 +29,13 @@ async function setup () {
     logging: s => debug(s),
     setup: true
   }
-  console.log(config.password)
+  console.log(chalk.grey(config.database))
+  console.log(chalk.grey(config.username))
+  console.log(chalk.grey(config.password))
+  console.log(chalk.grey(config.host))
+  console.log(chalk.grey(config.dialect))
+  console.log(chalk.grey(config.logging))
+  console.log(chalk.grey(config.setup))
   await db(config).catch(handleFatalError)
 
   console.log(`${chalk.bgGreen.white('[Connected]:')} Success!`)

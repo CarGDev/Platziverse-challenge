@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "standard --fix",
     "setup": "SET DEBUG=platziverse:* && node setup.js",
-    "test": "SET DEBUG=platziverse:* && ava tests/* --verbose"
+    "test": "SET DEBUG=platziverse:* && nyc ava tests/* --verbose"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "ava": "^3.12.1",
     "debug": "^4.1.1",
+    "nyc": "^15.1.0",
     "sqlite3": "^5.0.0",
     "standard": "^14.3.4"
   },
