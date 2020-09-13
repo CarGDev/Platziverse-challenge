@@ -1,9 +1,11 @@
 'use strict'
 
+const sequelize = require('sequelize')
+
 module.exports = function setupMetric (MetricModel, AgentModel) {
   async function findByAgentUuid (uuid) {
     return MetricModel.findAll({
-      attributes: ['type'],
+      attributes: ['type', [sequelize.fn('count', sequelize.col('metric.id')), 'Registros']],
       group: ['type'],
       include: [{
         attributes: [],
@@ -18,20 +20,20 @@ module.exports = function setupMetric (MetricModel, AgentModel) {
 
   async function findByTypeAgentUuid (type, uuid) {
     return MetricModel.findAll({
-      attributes: ['id', 'type', 'value', 'createAt'],
+      attributes: ['id', 'type', 'value', 'created_at', 'agent_id'],
       where: {
         type
       },
       limit: 20,
-      order: [['created', 'DESC']],
+      order: [['created_at', 'DESC']],
       include: [{
         attributes: [],
         model: AgentModel,
         where: {
           uuid
-        },
-        raw: true
-      }]
+        }
+      }],
+      raw: true
     })
   }
 
@@ -41,7 +43,7 @@ module.exports = function setupMetric (MetricModel, AgentModel) {
     })
 
     if (agent) {
-      Object.assign(metric, { agentId: agent.id })
+      Object.assign(metric, { agent_id: agent.id })
       const result = await MetricModel.create(metric)
       return result.toJSON()
     }

@@ -1,3 +1,5 @@
+'use strict'
+
 const agentFixtures = require('./agent')
 const utils = require('../../utils')
 
