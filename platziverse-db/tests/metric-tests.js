@@ -36,12 +36,12 @@ const metricUuidArgs = {
 }
 
 const typeUuidArgs = {
-  attributes: ['id', 'type', 'value', 'created_at'],
+  attributes: ['id', 'type', 'value', 'createdAt'],
   where: {
     type
   },
   limit: 20,
-  order: [['created_at', 'DESC']],
+  order: [['createdAt', 'DESC']],
   include: [{
     attributes: [],
     model: AgentStub,
@@ -53,7 +53,7 @@ const typeUuidArgs = {
 }
 
 const newMetric = {
-  agent_id: 1,
+  agentId: 1,
   type: 'CPU',
   value: '18%'
 }
