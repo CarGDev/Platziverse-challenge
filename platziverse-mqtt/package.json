@@ -1,14 +1,36 @@
 {
   "name": "platziverse-mqtt",
   "version": "1.0.0",
+  "private": true,
   "description": "simple platform for platziverse",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "SET NODE_ENV=production node server.js",
+    "star-dev": "SET DEBUG=platziverse:* nodemon server.js",
+    "lint": "standard",
+    "lint-fix": "standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarGDev/Platziverse-challenge.git"
   },
   "keywords": [
     "mosca"
   ],
   "author": "Carlos Gutierrez",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CarGDev/Platziverse-challenge/issues"
+  },
+  "homepage": "https://github.com/CarGDev/Platziverse-challenge#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "standard": "^14.3.4"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "debug": "^4.1.1",
+    "mosca": "^2.8.3",
+    "redis": "^3.0.2"
+  }
 }
