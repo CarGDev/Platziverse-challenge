@@ -1,7 +1,4 @@
-# Platziverse-challenge
-This is a challenge from Node.js curse advanced [Node curse](https://platzi.com/clases/nodejs/)
-
-## Usage
+# Usage
 
 ``` js
 const setupDataBase = require('platziverse-challenge')
