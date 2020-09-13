@@ -6,7 +6,7 @@ const redis = require('redis')
 const chalk = require('chalk')
 const db = require('platziverse-app')
 const conf = require('../platziverse-db/config')
-const config = conf(false)
+const config = conf()
 
 const backend = {
   type: 'redis',
@@ -57,7 +57,7 @@ server.on('ready', async () => {
 server.on('error', handleFatalError)
 
 function handleFatalError (err) {
-  console.error(`${chalk.bgRed.white('[Fatal error]:')} ${err.message}`)
+  console.error(`${chalk.bgRed.black('[Fatal error]:')} ${err.message}`)
   console.error(err.stack)
   process.exit(1)
 }

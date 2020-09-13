@@ -1,23 +1,27 @@
 const debug = require('debug')('platziverse:db:setup')
 
 module.exports = function config(configExtra) {
-  const config = {
-    database: process.env.DB_NAME || 'platziverse',
-    username: process.env.DB_USER || 'platzi',
-    password: process.env.DB_PASS || 'platzi',
-    hostname: process.env.DB_HOST || 'localhost',
-    dialect: 'postgres',
-    loggin: s => debug(s),
-    setup: true
-  }
-  
-  function extend (obj, values) {
-    const clone = Object.assign({}, obj)
-    return Object.assign(clone, values)
-  }
+  let config = null
 
   if (configExtra) {
-    return extend(config, configExtra)
+    config = {
+      database: process.env.DB_NAME || 'platziverse',
+      username: process.env.DB_USER || 'platzi',
+      password: process.env.DB_PASS || 'platzi',
+      hostname: process.env.DB_HOST || 'localhost',
+      dialect: 'postgres',
+      loggin: s => debug(s),
+      setup: true
+    }
+  } else {
+    config = {
+      database: process.env.DB_NAME || 'platziverse',
+      username: process.env.DB_USER || 'platzi',
+      password: process.env.DB_PASS || 'platzi',
+      hostname: process.env.DB_HOST || 'localhost',
+      dialect: 'postgres',
+      loggin: s => debug(s),
+    }
   }
 
   return config
