@@ -34,3 +34,14 @@ server.on('published', (packet, client) => {
 server.on('ready', () => {
   console.log(`${chalk.bgGreen.black('[platziverse-mqtt]:')} server is running`)
 })
+
+server.on('error', handleFatalError)
+
+function handleFatalError (err) {
+  console.error(`${chalk.bgRed.white('[Fatal error]:')} ${err.message}`)
+  console.error(err.stack)
+  process.exit(1)
+}
+
+process.on('uncaughtException', handleFatalError)
+process.on('unhandledRejection', handleFatalError)
