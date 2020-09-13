@@ -5,6 +5,8 @@
   "description": "A simple IoT platform",
   "main": "index.js",
   "scripts": {
+    "lint": "standard",
+    "lint-fix": "standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/CarGDev/Platziverse-challenge/issues"
   },
-  "homepage": "https://github.com/CarGDev/Platziverse-challenge#readme"
+  "homepage": "https://github.com/CarGDev/Platziverse-challenge#readme",
+  "devDependencies": {
+    "standard": "^14.3.4"
+  }
 }

@@ -6,7 +6,9 @@
 
 const PlatziverseAgent = require('platziverse-agent')
 
-const agent = new PlatziverseAgent()
+const agent = new PlatziverseAgent({
+  interval: 2000
+})
 
 agent.connect()
 
