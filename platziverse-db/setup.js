@@ -1,9 +1,10 @@
 'use strict'
 
 const db = require('./')
-const debug = require('debug')('platziverse:db:setup')
+// const debug = require('debug')('platziverse:db:setup')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
+const config = require('./config')()
 
 const prompt = inquirer.createPromptModule()
 
@@ -28,7 +29,7 @@ async function setup () {
     }
   }
 
-  const config = {
+  /* const config = {
     database: process.env.DB_NAME || 'platziverse',
     username: process.env.DB_USER || 'platzi',
     password: process.env.DB_PASS || 'platzi',
@@ -36,7 +37,7 @@ async function setup () {
     dialect: 'postgres',
     logging: s => debug(s),
     setup: true
-  }
+  } */
   await db(config).catch(handleFatalError)
 
   console.log(`${chalk.bgGreen.white('[Connected]:')} Success!`)
