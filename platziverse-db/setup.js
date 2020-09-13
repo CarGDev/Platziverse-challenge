@@ -34,7 +34,6 @@ async function setup (value) {
   process.exit(0)
 }
 
-
 function handleFatalError (err) {
   console.error(`${chalk.bgRed.white('[fatal error]:')} ${err.message}`)
   console.error(`${chalk.bgRed.white('[Error]:')} ${err.stack}`)

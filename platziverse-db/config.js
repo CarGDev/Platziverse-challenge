@@ -1,6 +1,6 @@
 const debug = require('debug')('platziverse:db:setup')
 
-module.exports = function config(configExtra) {
+module.exports = function config (configExtra) {
   let config = null
 
   if (configExtra) {
@@ -20,7 +20,7 @@ module.exports = function config(configExtra) {
       password: process.env.DB_PASS || 'platzi',
       hostname: process.env.DB_HOST || 'localhost',
       dialect: 'postgres',
-      loggin: s => debug(s),
+      loggin: s => debug(s)
     }
   }
 
