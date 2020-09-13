@@ -1,5 +1,5 @@
 # Project platziverse
-
+---
 ## platziverse-db
 
 ### `Usage`
@@ -12,7 +12,7 @@ setupDataBase(config).then(db => {
 }).catch(err => console.error(err))
 
 ```
-
+---
 ### Platziverse-mqtt
 
 ### `agent/connected`
@@ -62,3 +62,5 @@ setupDataBase(config).then(db => {
   timestamp // generated once create the message
 }
 ```
+
+---
