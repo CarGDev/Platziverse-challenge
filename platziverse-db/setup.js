@@ -9,11 +9,9 @@ const prompt = inquirer.createPromptModule()
 
 async function setup () {
   let answer = false
-  process.argv.forEach((val, index) => {
-    if (index > 1) {
-      if (val === '--yes' || val === '-y') {
-        answer = true
-      }
+  process.argv.forEach((val) => {
+    if (val === '--yes' || val === '-y') {
+      answer = true
     }
   })
 
