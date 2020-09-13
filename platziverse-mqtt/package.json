@@ -31,6 +31,7 @@
     "chalk": "^4.1.0",
     "debug": "^4.1.1",
     "mosca": "^2.8.3",
+    "platziverse-app": "file:../platziverse-db",
     "redis": "^3.0.2"
   }
 }
