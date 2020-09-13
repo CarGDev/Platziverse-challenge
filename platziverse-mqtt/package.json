@@ -5,8 +5,8 @@
   "description": "simple platform for platziverse",
   "main": "index.js",
   "scripts": {
-    "start": "SET NODE_ENV=production node server.js",
-    "star-dev": "SET DEBUG=platziverse:* nodemon server.js",
+    "start": "NODE_ENV=production node server.js",
+    "start-dev": "DEBUG=platziverse:* nodemon server.js",
     "lint": "standard",
     "lint-fix": "standard --fix"
   },
