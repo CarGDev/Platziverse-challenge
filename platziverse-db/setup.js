@@ -27,6 +27,7 @@ async function setup () {
       return console.log(chalk.green('Nothing happened :)'))
     }
   }
+
   const config = {
     database: process.env.DB_NAME || 'platziverse',
     username: process.env.DB_USER || 'platzi',
