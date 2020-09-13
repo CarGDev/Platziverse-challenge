@@ -1,6 +1,7 @@
 {
   "name": "platziverse-app",
   "version": "1.0.0",
+  "private": true,
   "description": "challenge for Node.js, Asimple IoT platform - DB module",
   "main": "index.js",
   "scripts": {
