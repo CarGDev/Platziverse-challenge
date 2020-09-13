@@ -5,7 +5,8 @@ const mosca = require('mosca')
 const redis = require('redis')
 const chalk = require('chalk')
 const db = require('platziverse-app')
-const config = require('platziverse-app/config')(false)
+const conf = require('../platziverse-db/config')
+const config = conf(false)
 
 const backend = {
   type: 'redis',
@@ -18,16 +19,18 @@ const settings = {
   backend
 }
 
-const config = {
+/* const config = {
   database: process.env.DB_NAME || 'platziverse',
   username: process.env.DB_USER || 'platzi',
   password: process.env.DB_PASS || 'platzi',
   host: process.env.DB_HOST || 'localhost',
   dialect: 'postgres',
   logging: s => debug(s),
-}
+} */
 
 const server = new mosca.Server(settings)
+
+let Agent, Metric
 
 server.on('clientConnected', client => {
   debug(`Client Connected: ${client.id}`)
@@ -42,7 +45,12 @@ server.on('published', (packet, client) => {
   debug(`Payload: ${packet.payload}`)
 })
 
-server.on('ready', () => {
+server.on('ready', async () => {
+  const services = await db(config).catch(handleFatalError)
+
+  Agent = services.Agent
+  Metric = services.Metric
+
   console.log(`${chalk.bgGreen.black('[platziverse-mqtt]:')} server is running`)
 })
 
