@@ -8,18 +8,27 @@ const inquirer = require('inquirer')
 const prompt = inquirer.createPromptModule()
 
 async function setup () {
-  const answer = await prompt([
-    {
-      type: 'confirm',
-      name: 'setup',
-      message: 'This will destroy your database, are you sure?'
+  let answer = false
+  process.argv.forEach((val, index) => {
+    if (index > 1) {
+      if (val === '--yes' || val === '-y') {
+        answer = true
+      }
     }
-  ])
+  })
 
-  if (!answer.setup) {
-    return console.log(chalk.green('Nothing happened :)'))
+  if (!answer) {
+    const answer = await prompt([
+      {
+        type: 'confirm',
+        name: 'setup',
+        message: 'This will destroy your database, are you sure?'
+      }
+    ])
+    if (!answer.setup) {
+      return console.log(chalk.green('Nothing happened :)'))
+    }
   }
-
   const config = {
     database: process.env.DB_NAME || 'platziverse',
     username: process.env.DB_USER || 'platzi',
@@ -29,18 +38,12 @@ async function setup () {
     logging: s => debug(s),
     setup: true
   }
-  console.log(chalk.grey(config.database))
-  console.log(chalk.grey(config.username))
-  console.log(chalk.grey(config.password))
-  console.log(chalk.grey(config.host))
-  console.log(chalk.grey(config.dialect))
-  console.log(chalk.grey(config.logging))
-  console.log(chalk.grey(config.setup))
   await db(config).catch(handleFatalError)
 
   console.log(`${chalk.bgGreen.white('[Connected]:')} Success!`)
   process.exit(0)
 }
+
 
 function handleFatalError (err) {
   console.error(`${chalk.bgRed.white('[fatal error]:')} ${err.message}`)
