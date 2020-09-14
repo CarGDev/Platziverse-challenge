@@ -9,7 +9,7 @@
     "start-dev": "DEBUG=platziverse:* nodemon server.js",
     "lint": "standard",
     "lint-fix": "standard --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "DEBUG=platziverse:* ava tests/* --verbose"
   },
   "repository": {
     "type": "git",
@@ -22,13 +22,17 @@
   },
   "homepage": "https://github.com/CarGDev/Platziverse-challenge#readme",
   "devDependencies": {
+    "ava": "^3.12.1",
     "nodemon": "^2.0.4",
-    "standard": "^14.3.4"
+    "standard": "^14.3.4",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "chalk": "^4.1.0",
     "debug": "^4.1.1",
     "express": "^4.17.1",
-    "httpie": "^1.1.2"
+    "express-asyncify": "^1.0.1",
+    "httpie": "^1.1.2",
+    "platziverse-app": "file:../platziverse-db"
   }
 }
