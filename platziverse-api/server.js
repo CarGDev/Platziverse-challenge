@@ -3,7 +3,9 @@
 const http = require('http')
 const express = require('express')
 const chalk = require('chalk')
+
 const api = require('./api')
+
 const debug = require('debug')('platziverse:api:routes')
 const asyncify = require('express-asyncify')
 
@@ -17,7 +19,7 @@ app.use('/api', api)
 app.use((err, req, res, next) => {
   debug(`Error: ${err.message}`)
 
-  if (err.message.match(/not found/)){
+  if (err.message.match(/not found/)) {
     return res.status(404).send({ error: err.message })
   }
   res.status(500).send({ error: err.message })
@@ -32,7 +34,7 @@ function handleFatalError (err) {
 if (!module.parent) {
   process.on('uncaughtExceotion', handleFatalError)
   process.on('unhandledRejection', handleFatalError)
-  
+
   server.listen(port, () => {
     console.log(`${chalk.green('[platziverse-api]:')} server listening on port ${port}`)
   })

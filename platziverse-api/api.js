@@ -2,7 +2,7 @@
 
 const debug = require('debug')('platziverse:api:routes')
 const express = require('express')
-const db = require("platziverse-app")
+const db = require('platziverse-app')
 const asyncify = require('express-asyncify')
 const config = require('../platziverse-db/config')
 
@@ -62,7 +62,7 @@ api.get('metrics/:uuid', async (req, res, next) => {
   let metrics
 
   try {
-    metric = await Metric.findByAgentUuid(uuid)
+    metrics = await Metric.findByAgentUuid(uuid)
   } catch (e) {
     return next(e)
   }
@@ -82,7 +82,7 @@ api.get('/metrics/:uuid/:type', async (req, res, next) => {
   try {
     metrics = await Metric.findByTypeAgentUuid(type, uuid)
   } catch (e) {
-    return next(e) 
+    return next(e)
   }
   if (!metrics || metrics.length === 0) {
     return next(new Error(`Metrics not found for agent with uuid ${uuid}`))
