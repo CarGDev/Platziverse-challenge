@@ -24,5 +24,10 @@
   "homepage": "https://github.com/CarGDev/Platziverse-challenge#readme",
   "devDependencies": {
     "standard": "^14.3.4"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "defaults": "^1.0.3",
+    "mqtt": "^4.2.1"
   }
 }
