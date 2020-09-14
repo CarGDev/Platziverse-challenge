@@ -14,6 +14,7 @@ let Metric
 
 api.use('*', async (req, res, next) => {
   if (!services) {
+    debug('Connecting to database')
     try {
       services = await db(config())
     } catch (e) {
@@ -25,25 +26,68 @@ api.use('*', async (req, res, next) => {
   next()
 })
 
-api.get('/agents', (req, res) => {
+api.get('/agents', async (req, res, next) => {
   debug('A request has come to /agents')
-  res.send({})
+
+  let agents = []
+  try {
+    agents = await Agent.findConnected()
+  } catch (e) {
+    next(e)
+  }
+  res.send(agents)
 })
-api.get('/agents/:uuid', (req, res, next) => {
+api.get('/agents/:uuid', async (req, res, next) => {
   const { uuid } = req.params
 
-  if (uuid !== 'yyy') {
-    return next(new Error('Agent not found'))
+  debug(`request to /agent/${uuid}`)
+
+  let agent
+  try {
+    agent = await Agent.findByUuid(uuid)
+  } catch (e) {
+    return next(e)
   }
-  res.send({ uuid })
+
+  if (!agent) {
+    return next(new Error(`Agent not found with uuid ${uuid}`))
+  }
+  res.send(agent)
 })
-api.get('metrics/:uuid', (req, res) => {
+api.get('metrics/:uuid', async (req, res, next) => {
   const { uuid } = req.params
-  res.send({ uuid })
+
+  debug(`request to /metrics/${uuid}`)
+
+  let metrics
+
+  try {
+    metric = await Metric.findByAgentUuid(uuid)
+  } catch (e) {
+    return next(e)
+  }
+  if (!metrics || metrics.length === 0) {
+    return next(new Error(`Metrics not found for agent with uuid ${uuid}`))
+  }
+  res.send(metrics)
 })
-api.get('/metrics/:uuid/:type', (req, res) => {
+
+api.get('/metrics/:uuid/:type', async (req, res, next) => {
   const { uuid, type } = req.params
-  res.send({ uuid, type })
+
+  debug(`request to /metrics/${uuid}/${type}`)
+
+  let metrics = []
+
+  try {
+    metrics = await Metric.findByTypeAgentUuid(type, uuid)
+  } catch (e) {
+    return next(e) 
+  }
+  if (!metrics || metrics.length === 0) {
+    return next(new Error(`Metrics not found for agent with uuid ${uuid}`))
+  }
+  res.send(metrics)
 })
 
 module.exports = api
