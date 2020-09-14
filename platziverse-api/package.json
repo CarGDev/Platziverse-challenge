@@ -1,0 +1,24 @@
+{
+  "name": "platziverse-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A simple IoT platform - API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarGDev/Platziverse-challenge.git"
+  },
+  "author": "Carlos Gutierrez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CarGDev/Platziverse-challenge/issues"
+  },
+  "homepage": "https://github.com/CarGDev/Platziverse-challenge#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "standard": "^14.3.4"
+  }
+}
