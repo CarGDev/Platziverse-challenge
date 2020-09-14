@@ -1,10 +1,4 @@
-# Platziverse-agent
-
-## Usage
-
-```js
-
-const PlatziverseAgent = require('platziverse-agent')
+const PlatziverseAgent = require('../')
 
 const agent = new PlatziverseAgent({
   name: 'myapp',
@@ -20,15 +14,15 @@ agent.addMetric('promiseMetric', function getRandomPromise () {
   return Promise.resolve(Math.random())
 })
 
-agent.addMetric('callbackMetric', function getRandomCallBack (callback) {
-  setTimeout (() => {
+agent.addMetric('callbackMetric', function getRandomCallback (callback) {
+  setTimeout(() => {
     callback(null, Math.random())
   }, 1000)
 })
 
 agent.connect()
 
-// this agent only
+// This agent only
 agent.on('connected', handler)
 agent.on('disconnected', handler)
 agent.on('message', handler)
@@ -36,9 +30,10 @@ agent.on('message', handler)
 // Other Agents
 agent.on('agent/connected', handler)
 agent.on('agent/disconnected', handler)
-agent.on('agent/message', payload => {
-  console.log(payload)
-})
+agent.on('agent/message', handler)
 
-setTimeout (() => agent.disconnect(), 20000)
-```
+function handler (payload) {
+  console.log(payload)
+}
+
+setTimeout(() => agent.disconnect(), 30000)
