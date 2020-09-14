@@ -5,6 +5,10 @@
   "description": "A simple IoT platform - API",
   "main": "index.js",
   "scripts": {
+    "start": "NODE_ENV=production node server.js",
+    "start-dev": "DEBUG=platziverse:* nodemon server.js",
+    "lint": "standard",
+    "lint-fix": "standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +24,10 @@
   "devDependencies": {
     "nodemon": "^2.0.4",
     "standard": "^14.3.4"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "debug": "^4.1.1",
+    "express": "^4.17.1"
   }
 }
